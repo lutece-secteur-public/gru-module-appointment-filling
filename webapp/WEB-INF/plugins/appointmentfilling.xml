@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plug-in>
-    <name>appointmentfilling</name>
+    <name>appointment-filling</name>
     <class>fr.paris.lutece.portal.service.plugin.PluginDefaultImplementation</class>
     <version>1.0.0</version>
     <documentation></documentation>
@@ -25,6 +25,10 @@
 
     <!-- XPages parameters -->
     <applications>
+    	<application>
+            <application-id>appointmentfilling</application-id>
+            <application-class>fr.paris.lutece.plugins.appointment.modules.appointmentfilling.web.FillingAppointmentForm</application-class>
+        </application>
     </applications>
 
     <!-- Portlet parameters -->

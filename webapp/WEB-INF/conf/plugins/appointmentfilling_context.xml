@@ -5,6 +5,4 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd" >
 
 
-<bean id="appointmentfilling.fillingFormService" class="fr.paris.lutece.plugins.appointment.modules.appointmentfilling.service.FillingFormService">
-</bean>
 </beans>

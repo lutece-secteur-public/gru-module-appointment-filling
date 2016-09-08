@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2002-2015, Mairie de Paris
+ * Copyright (c) 2002-2016, Mairie de Paris
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -35,10 +35,8 @@ package fr.paris.lutece.plugins.appointment.modules.appointmentfilling.constant;
 
 public class FillingFormConstants
 {
-    // REST CONSTANTS
-    public static final String PLUGIN_NAME = "fillingForm/";
-
-    // EXIT STATUS
-    public static final String STATUS_201 = "{" + "\"status\":" + "\"201\"" + "}";
-    public static final String STATUS_404 = "{" + "\"status\":" + "\"404\"" + "}";
+    public static final String PROPERTY_USER_LAST_NAME = "appointmentfilling.user.lastName";
+    public static final String PROPERTY_USER_FIRST_NAME = "appointmentfilling.user.firstname";
+    public static final String PROPERTY_USER_EMAIL = "appointmentfilling.user.email";
+    public static final String PARAMETER_ID_FORM = "id_form";
 }
