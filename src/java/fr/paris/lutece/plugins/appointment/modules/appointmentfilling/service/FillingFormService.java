@@ -33,37 +33,37 @@
  */
 package fr.paris.lutece.plugins.appointment.modules.appointmentfilling.service;
 
+import java.util.List;
+import java.util.Locale;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.lang.StringUtils;
+
 import fr.paris.lutece.plugins.appointment.business.AppointmentDTO;
 import fr.paris.lutece.plugins.appointment.business.AppointmentForm;
 import fr.paris.lutece.plugins.appointment.modules.appointmentfilling.constant.FillingFormConstants;
-import fr.paris.lutece.plugins.appointment.service.AppointmentFormService;
+import fr.paris.lutece.plugins.appointment.service.EntryService;
 import fr.paris.lutece.plugins.genericattributes.business.Entry;
 import fr.paris.lutece.plugins.genericattributes.business.EntryFilter;
 import fr.paris.lutece.plugins.genericattributes.business.EntryHome;
 import fr.paris.lutece.portal.service.util.AppLogService;
 import fr.paris.lutece.portal.service.util.AppPropertiesService;
 
-import org.apache.commons.lang.StringUtils;
-
-import java.util.List;
-import java.util.Locale;
-
-import javax.servlet.http.HttpServletRequest;
-
-
 public class FillingFormService implements IFillingForm
 {
     private static IFillingForm _singleton;
 
     /**
-      * Returns the unique instance
-      * @return The unique instance
+     * Returns the unique instance
+     * 
+     * @return The unique instance
      */
-    public static IFillingForm getService(  )
+    public static IFillingForm getService( )
     {
         if ( _singleton == null )
         {
-            _singleton = new FillingFormService(  );
+            _singleton = new FillingFormService( );
         }
 
         return _singleton;
@@ -72,12 +72,9 @@ public class FillingFormService implements IFillingForm
     @Override
     public AppointmentDTO fillFormAppointmentAttribut( HttpServletRequest request, AppointmentDTO appointment )
     {
-        String strLastName = request.getParameter( AppPropertiesService.getProperty( 
-                    FillingFormConstants.PROPERTY_USER_LAST_NAME, StringUtils.EMPTY ) );
-        String strFirstName = request.getParameter( AppPropertiesService.getProperty( 
-                    FillingFormConstants.PROPERTY_USER_FIRST_NAME, StringUtils.EMPTY ) );
-        String strEmail = request.getParameter( AppPropertiesService.getProperty( 
-                    FillingFormConstants.PROPERTY_USER_EMAIL, StringUtils.EMPTY ) );
+        String strLastName = request.getParameter( AppPropertiesService.getProperty( FillingFormConstants.PROPERTY_USER_LAST_NAME, StringUtils.EMPTY ) );
+        String strFirstName = request.getParameter( AppPropertiesService.getProperty( FillingFormConstants.PROPERTY_USER_FIRST_NAME, StringUtils.EMPTY ) );
+        String strEmail = request.getParameter( AppPropertiesService.getProperty( FillingFormConstants.PROPERTY_USER_EMAIL, StringUtils.EMPTY ) );
 
         appointment.setLastName( ( strLastName == null ) ? StringUtils.EMPTY : strLastName );
         appointment.setFirstName( ( strFirstName == null ) ? StringUtils.EMPTY : strFirstName );
@@ -87,10 +84,9 @@ public class FillingFormService implements IFillingForm
     }
 
     @Override
-    public AppointmentDTO fillFormAppointmentDynamicAttribut( HttpServletRequest request, int nIdForm,
-        AppointmentDTO appointment, AppointmentFormService appointmentFormService )
+    public AppointmentDTO fillFormAppointmentDynamicAttribut( HttpServletRequest request, int nIdForm, AppointmentDTO appointment )
     {
-        EntryFilter filter = new EntryFilter(  );
+        EntryFilter filter = new EntryFilter( );
         filter.setIdResource( nIdForm );
         filter.setResourceType( AppointmentForm.RESOURCE_TYPE );
         filter.setEntryParentNull( EntryFilter.FILTER_TRUE );
@@ -98,7 +94,7 @@ public class FillingFormService implements IFillingForm
         filter.setIdIsComment( EntryFilter.FILTER_FALSE );
         filter.setIsOnlyDisplayInBack( EntryFilter.FILTER_FALSE );
 
-        Locale locale = request.getLocale(  );
+        Locale locale = request.getLocale( );
 
         List<Entry> listEntryFirstLevel = EntryHome.getEntryList( filter );
 
@@ -106,12 +102,11 @@ public class FillingFormService implements IFillingForm
         {
             try
             {
-                appointmentFormService.getResponseEntry( request, entry.getIdEntry(  ), locale, appointment );
+                EntryService.getResponseEntry( request, entry.getIdEntry( ), locale, appointment );
             }
-            catch ( Exception e )
+            catch( Exception e )
             {
-                AppLogService.error( "Erreur de réccupération de reponse de l'entrie: " + entry.getTitle(  ) + "id: " +
-                    entry.getIdEntry(  ) );
+                AppLogService.error( "Erreur de réccupération de reponse de l'entrie: " + entry.getTitle( ) + "id: " + entry.getIdEntry( ) );
             }
         }
 

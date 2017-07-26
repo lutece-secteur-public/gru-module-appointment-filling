@@ -49,28 +49,31 @@ import fr.paris.lutece.portal.web.xpages.XPage;
 import org.apache.commons.lang.StringUtils;
 import javax.servlet.http.HttpServletRequest;
 
-
 @Controller( xpageName = FillingAppointmentForm.XPAGE_NAME, pageTitleI18nKey = FillingAppointmentForm.MESSAGE_DEFAULT_PAGE_TITLE, pagePathI18nKey = FillingAppointmentForm.MESSAGE_DEFAULT_PATH )
 public class FillingAppointmentForm extends AppointmentApp
 {
     /**
-    * The name of the XPage
-    */
+     * UID
+     */
+    private static final long serialVersionUID = -604178136184768512L;
+    /**
+     * The name of the XPage
+     */
     protected static final String XPAGE_NAME = "appointmentfilling";
     // View
     private static final String DO_FILLING_INFO = "doFillingForm";
     private static final String ERROR_MESSAGE_IDFORM_EMPTY = "appointmentfilling.message.idform_empty";
+    private static final String SESSION_NOT_VALIDATED_APPOINTMENT = "appointment.appointmentFormService.notValidatedAppointment";
 
-   
     /**
      * Filling appointment form
+     * 
      * @param request
      * @return XPAGE VIEW_APPOINTMENT_FORM_FIRST_STEP
      * @throws SiteMessageException
      */
     @View( value = DO_FILLING_INFO, defaultView = true )
-    public XPage doFillingFormAppointment( HttpServletRequest request )
-        throws SiteMessageException, UserNotSignedException
+    public XPage doFillingFormAppointment( HttpServletRequest request ) throws SiteMessageException, UserNotSignedException
     {
         String strIdForm = request.getParameter( FillingFormConstants.PARAMETER_ID_FORM );
 
@@ -80,14 +83,14 @@ public class FillingAppointmentForm extends AppointmentApp
         }
 
         int nIdForm = Integer.parseInt( strIdForm );
-        AppointmentDTO appointmentDTO = new AppointmentDTO(  );
-        IFillingForm fillingFormService = FillingFormService.getService(  );
+        AppointmentDTO appointmentDTO = new AppointmentDTO( );
+        IFillingForm fillingFormService = FillingFormService.getService( );
 
         appointmentDTO = fillingFormService.fillFormAppointmentAttribut( request, appointmentDTO );
-        fillingFormService.fillFormAppointmentDynamicAttribut( request, nIdForm, appointmentDTO, _appointmentFormService );
-        _appointmentFormService.saveAppointmentInSession( request.getSession(  ), appointmentDTO );
+        fillingFormService.fillFormAppointmentDynamicAttribut( request, nIdForm, appointmentDTO );
+        request.getSession( ).setAttribute( SESSION_NOT_VALIDATED_APPOINTMENT, appointmentDTO );
 
-        return getAppointmentFormFirstStep( request );
+        return getViewAppointmentForm( request );
     }
 
 }

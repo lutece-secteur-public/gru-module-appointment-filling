@@ -33,16 +33,15 @@
  */
 package fr.paris.lutece.plugins.appointment.modules.appointmentfilling.service;
 
-import fr.paris.lutece.plugins.appointment.business.AppointmentDTO;
-import fr.paris.lutece.plugins.appointment.service.AppointmentFormService;
-
 import javax.servlet.http.HttpServletRequest;
 
+import fr.paris.lutece.plugins.appointment.business.AppointmentDTO;
 
 public interface IFillingForm
 {
     /**
      * Filling appointment form attributes
+     * 
      * @param request
      * @param appointment
      * @return appointment
@@ -51,12 +50,12 @@ public interface IFillingForm
 
     /**
      * Filling appointment form dynamic attributes
+     * 
      * @param request
      * @param nIdForm
      * @param appointment
      * @param _appointmentFormService
      * @return appointment
      */
-    public AppointmentDTO fillFormAppointmentDynamicAttribut( HttpServletRequest request, int nIdForm,
-        AppointmentDTO appointment, AppointmentFormService appointmentFormService );
+    public AppointmentDTO fillFormAppointmentDynamicAttribut( HttpServletRequest request, int nIdForm, AppointmentDTO appointment );
 }
