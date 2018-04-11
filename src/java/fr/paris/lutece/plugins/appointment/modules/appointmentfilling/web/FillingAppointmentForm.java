@@ -33,11 +33,15 @@
  */
 package fr.paris.lutece.plugins.appointment.modules.appointmentfilling.web;
 
-import fr.paris.lutece.plugins.appointment.business.AppointmentDTO;
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.lang.StringUtils;
+
 import fr.paris.lutece.plugins.appointment.modules.appointmentfilling.constant.FillingFormConstants;
 import fr.paris.lutece.plugins.appointment.modules.appointmentfilling.service.FillingFormService;
 import fr.paris.lutece.plugins.appointment.modules.appointmentfilling.service.IFillingForm;
 import fr.paris.lutece.plugins.appointment.web.AppointmentApp;
+import fr.paris.lutece.plugins.appointment.web.dto.AppointmentDTO;
 import fr.paris.lutece.portal.service.message.SiteMessage;
 import fr.paris.lutece.portal.service.message.SiteMessageException;
 import fr.paris.lutece.portal.service.message.SiteMessageService;
@@ -45,9 +49,6 @@ import fr.paris.lutece.portal.service.security.UserNotSignedException;
 import fr.paris.lutece.portal.util.mvc.commons.annotations.View;
 import fr.paris.lutece.portal.util.mvc.xpage.annotations.Controller;
 import fr.paris.lutece.portal.web.xpages.XPage;
-
-import org.apache.commons.lang.StringUtils;
-import javax.servlet.http.HttpServletRequest;
 
 @Controller( xpageName = FillingAppointmentForm.XPAGE_NAME, pageTitleI18nKey = FillingAppointmentForm.MESSAGE_DEFAULT_PAGE_TITLE, pagePathI18nKey = FillingAppointmentForm.MESSAGE_DEFAULT_PATH )
 public class FillingAppointmentForm extends AppointmentApp
