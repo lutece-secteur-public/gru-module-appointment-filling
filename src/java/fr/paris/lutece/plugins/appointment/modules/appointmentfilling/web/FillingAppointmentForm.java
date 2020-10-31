@@ -42,6 +42,7 @@ import fr.paris.lutece.plugins.appointment.modules.appointmentfilling.service.Fi
 import fr.paris.lutece.plugins.appointment.modules.appointmentfilling.service.IFillingForm;
 import fr.paris.lutece.plugins.appointment.web.AppointmentApp;
 import fr.paris.lutece.plugins.appointment.web.dto.AppointmentDTO;
+import fr.paris.lutece.portal.service.admin.AccessDeniedException;
 import fr.paris.lutece.portal.service.message.SiteMessage;
 import fr.paris.lutece.portal.service.message.SiteMessageException;
 import fr.paris.lutece.portal.service.message.SiteMessageService;
@@ -72,9 +73,10 @@ public class FillingAppointmentForm extends AppointmentApp
      * @param request
      * @return XPAGE VIEW_APPOINTMENT_FORM_FIRST_STEP
      * @throws SiteMessageException
+     * @throws AccessDeniedException 
      */
     @View( value = DO_FILLING_INFO, defaultView = true )
-    public XPage doFillingFormAppointment( HttpServletRequest request ) throws SiteMessageException, UserNotSignedException
+    public XPage doFillingFormAppointment( HttpServletRequest request ) throws SiteMessageException, UserNotSignedException, AccessDeniedException
     {
         String strIdForm = request.getParameter( FillingFormConstants.PARAMETER_ID_FORM );
 
