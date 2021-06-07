@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2002-2018, Mairie de Paris
+ * Copyright (c) 2002-2021, City of Paris
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -73,7 +73,7 @@ public class FillingAppointmentForm extends AppointmentApp
      * @param request
      * @return XPAGE VIEW_APPOINTMENT_FORM_FIRST_STEP
      * @throws SiteMessageException
-     * @throws AccessDeniedException 
+     * @throws AccessDeniedException
      */
     @View( value = DO_FILLING_INFO, defaultView = true )
     public XPage doFillingFormAppointment( HttpServletRequest request ) throws SiteMessageException, UserNotSignedException, AccessDeniedException
