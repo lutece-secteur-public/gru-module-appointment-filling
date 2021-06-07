@@ -9,7 +9,7 @@
     <groupId>fr.paris.lutece.plugins</groupId>
     <artifactId>module-appointment-filling</artifactId>
     <packaging>lutece-plugin</packaging>
-    <version>3.0.0</version>
+    <version>3.0.1-SNAPSHOT</version>
     <name>Lutece appointment filling module</name>
 
     <repositories>
@@ -45,6 +45,6 @@
         <connection>scm:git:https://github.com/lutece-secteur-public/gru-module-appointment-filling.git</connection>
         <developerConnection>scm:git:https://github.com/lutece-secteur-public/gru-module-appointment-filling.git</developerConnection>
         <url>https://github.com/lutece-secteur-public/gru-module-appointment-filling.git</url>
-      <tag>module-appointment-filling-3.0.0</tag>
+      <tag>HEAD</tag>
   </scm>
 </project>
