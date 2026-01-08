@@ -35,7 +35,7 @@ package fr.paris.lutece.plugins.appointment.modules.appointmentfilling.web;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import fr.paris.lutece.plugins.appointment.modules.appointmentfilling.constant.FillingFormConstants;
 import fr.paris.lutece.plugins.appointment.modules.appointmentfilling.service.FillingFormService;
