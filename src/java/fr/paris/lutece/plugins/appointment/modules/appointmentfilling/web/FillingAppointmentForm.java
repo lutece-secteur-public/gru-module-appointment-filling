@@ -64,7 +64,7 @@ public class FillingAppointmentForm extends AppointmentApp
     protected static final String XPAGE_NAME = "appointmentfilling";
     // View
     private static final String DO_FILLING_INFO = "doFillingForm";
-    private static final String ERROR_MESSAGE_IDFORM_EMPTY = "appointmentfilling.message.idform_empty";
+    private static final String ERROR_MESSAGE_IDFORM_EMPTY = "module.appointment.appointmentfilling.message.idform_empty";
     private static final String SESSION_NOT_VALIDATED_APPOINTMENT = "appointment.appointmentFormService.notValidatedAppointment";
 
     /**
