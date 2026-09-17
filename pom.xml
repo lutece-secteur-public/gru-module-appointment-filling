@@ -2,14 +2,14 @@
     <parent>
         <artifactId>lutece-global-pom</artifactId>
         <groupId>fr.paris.lutece.tools</groupId>
-        <version>7.0.7</version>
+        <version>8.0.1</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>fr.paris.lutece.plugins</groupId>
     <artifactId>module-appointment-filling</artifactId>
     <packaging>lutece-plugin</packaging>
-    <version>3.0.2-SNAPSHOT</version>
+    <version>4.0.0-SNAPSHOT</version>
     <name>Lutece appointment filling module</name>
 
     <repositories>
@@ -25,21 +25,19 @@
         <dependency>
             <groupId>fr.paris.lutece</groupId>
             <artifactId>lutece-core</artifactId>
-            <version>[5.0.0,7.9.9)</version>
+            <version>[8.0.0,)</version>
             <type>lutece-core</type>
         </dependency>        
 		<dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>plugin-appointment</artifactId>
-            <version>[3.0.0,3.9.9)</version>
+            <version>[4.0.0-SNAPSHOT,)</version>
             <type>lutece-plugin</type>
         </dependency>
     </dependencies>
 
      <properties>
         <componentName>appointmentfilling</componentName>
-        <jiraProjectName>MAFILLING</jiraProjectName>
-        <jiraComponentId>13554</jiraComponentId>
     </properties>
     <scm>
         <connection>scm:git:https://github.com/lutece-secteur-public/gru-module-appointment-filling.git</connection>

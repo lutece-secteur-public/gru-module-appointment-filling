@@ -33,13 +33,16 @@
  */
 package fr.paris.lutece.plugins.appointment.modules.appointmentfilling.web;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.enterprise.context.SessionScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
 
 import fr.paris.lutece.plugins.appointment.modules.appointmentfilling.constant.FillingFormConstants;
-import fr.paris.lutece.plugins.appointment.modules.appointmentfilling.service.FillingFormService;
 import fr.paris.lutece.plugins.appointment.modules.appointmentfilling.service.IFillingForm;
+import fr.paris.lutece.plugins.appointment.service.FormService;
 import fr.paris.lutece.plugins.appointment.web.AppointmentApp;
 import fr.paris.lutece.plugins.appointment.web.dto.AppointmentDTO;
 import fr.paris.lutece.portal.service.admin.AccessDeniedException;
@@ -51,6 +54,8 @@ import fr.paris.lutece.portal.util.mvc.commons.annotations.View;
 import fr.paris.lutece.portal.util.mvc.xpage.annotations.Controller;
 import fr.paris.lutece.portal.web.xpages.XPage;
 
+@SessionScoped
+@Named( "appointment-filling.xpage.appointmentfilling" )
 @Controller( xpageName = FillingAppointmentForm.XPAGE_NAME, pageTitleI18nKey = FillingAppointmentForm.MESSAGE_DEFAULT_PAGE_TITLE, pagePathI18nKey = FillingAppointmentForm.MESSAGE_DEFAULT_PATH )
 public class FillingAppointmentForm extends AppointmentApp
 {
@@ -66,6 +71,9 @@ public class FillingAppointmentForm extends AppointmentApp
     private static final String DO_FILLING_INFO = "doFillingForm";
     private static final String ERROR_MESSAGE_IDFORM_EMPTY = "module.appointment.appointmentfilling.message.idform_empty";
     private static final String SESSION_NOT_VALIDATED_APPOINTMENT = "appointment.appointmentFormService.notValidatedAppointment";
+
+    @Inject
+    private IFillingForm _fillingFormService;
 
     /**
      * Filling appointment form
@@ -86,11 +94,16 @@ public class FillingAppointmentForm extends AppointmentApp
         }
 
         int nIdForm = Integer.parseInt( strIdForm );
-        AppointmentDTO appointmentDTO = new AppointmentDTO( );
-        IFillingForm fillingFormService = FillingFormService.getService( );
 
-        appointmentDTO = fillingFormService.fillFormAppointmentAttribut( request, appointmentDTO );
-        fillingFormService.fillFormAppointmentDynamicAttribut( request, nIdForm, appointmentDTO );
+        if ( FormService.findFormLightByPrimaryKey( nIdForm ) == null )
+        {
+            SiteMessageService.setMessage( request, ERROR_MESSAGE_IDFORM_EMPTY, SiteMessage.TYPE_STOP );
+        }
+
+        AppointmentDTO appointmentDTO = new AppointmentDTO( );
+
+        appointmentDTO = _fillingFormService.fillFormAppointmentAttribut( request, appointmentDTO );
+        _fillingFormService.fillFormAppointmentDynamicAttribut( request, nIdForm, appointmentDTO );
         request.getSession( ).setAttribute( SESSION_NOT_VALIDATED_APPOINTMENT, appointmentDTO );
 
         return getViewAppointmentForm( request );
