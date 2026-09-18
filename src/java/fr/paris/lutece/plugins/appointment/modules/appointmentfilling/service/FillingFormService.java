@@ -36,7 +36,8 @@ package fr.paris.lutece.plugins.appointment.modules.appointmentfilling.service;
 import java.util.List;
 import java.util.Locale;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -50,25 +51,9 @@ import fr.paris.lutece.plugins.genericattributes.business.EntryHome;
 import fr.paris.lutece.portal.service.util.AppLogService;
 import fr.paris.lutece.portal.service.util.AppPropertiesService;
 
+@ApplicationScoped
 public class FillingFormService implements IFillingForm
 {
-    private static IFillingForm _singleton;
-
-    /**
-     * Returns the unique instance
-     * 
-     * @return The unique instance
-     */
-    public static IFillingForm getService( )
-    {
-        if ( _singleton == null )
-        {
-            _singleton = new FillingFormService( );
-        }
-
-        return _singleton;
-    }
-
     @Override
     public AppointmentDTO fillFormAppointmentAttribut( HttpServletRequest request, AppointmentDTO appointment )
     {
@@ -106,7 +91,7 @@ public class FillingFormService implements IFillingForm
             }
             catch( Exception e )
             {
-                AppLogService.error( "Erreur de réccupération de reponse de l'entrie: " + entry.getTitle( ) + "id: " + entry.getIdEntry( ) );
+                AppLogService.error( "Erreur de réccupération de reponse de l'entrie: {} id: {}", entry.getTitle( ), entry.getIdEntry( ) );
             }
         }
 
