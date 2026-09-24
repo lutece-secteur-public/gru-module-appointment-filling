@@ -64,6 +64,7 @@ public class FillingFormService implements IFillingForm
         appointment.setLastName( ( strLastName == null ) ? StringUtils.EMPTY : strLastName );
         appointment.setFirstName( ( strFirstName == null ) ? StringUtils.EMPTY : strFirstName );
         appointment.setEmail( ( strEmail == null ) ? StringUtils.EMPTY : strEmail );
+        appointment.setConfirmEmail( appointment.getEmail( ) );
 
         return appointment;
     }
