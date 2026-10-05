@@ -63,7 +63,7 @@ import fr.paris.lutece.util.url.UrlItem;
  */
 @SessionScoped
 @Named( "appointment-filling.xpage.appointmentfilling" )
-@Controller( xpageName = FillingAppointmentForm.XPAGE_NAME, pageTitleI18nKey = AppointmentApp.MESSAGE_DEFAULT_PAGE_TITLE, pagePathI18nKey = AppointmentApp.MESSAGE_DEFAULT_PATH )
+@Controller( xpageName = FillingAppointmentForm.XPAGE_NAME, pageTitleI18nKey = AppointmentApp.MESSAGE_DEFAULT_PAGE_TITLE, pagePathI18nKey = AppointmentApp.MESSAGE_DEFAULT_PATH, securityTokenEnabled = true )
 public class FillingAppointmentForm extends MVCApplication
 {
     private static final long serialVersionUID = -604178136184768512L;
